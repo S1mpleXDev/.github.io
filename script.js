@@ -3,34 +3,36 @@ function openDiscord() {
     window.open('https://discord.gg/Kr2pvPfEUR', '_blank');
 }
 
-// Load JSON code dynamically
-async function loadCode() {
+// Load key from JSON
+async function loadKey() {
+    const keyBox = document.getElementById("keyBox");
     try {
-        const response = await fetch('code.json');
+        const response = await fetch("key.json");
         const data = await response.json();
-        const codeContent = document.getElementById('codeContent');
-        codeContent.textContent = data.code; // expects { "code": "your code here" }
-    } catch (error) {
-        document.getElementById('codeContent').textContent = "// Failed to load code";
-        console.error(error);
+        keyBox.textContent = data.key;
+    } catch {
+        keyBox.textContent = "Error loading key.";
     }
 }
 
-// Copy code functionality
-document.getElementById('copyBtn').addEventListener('click', () => {
-    const code = document.getElementById('codeContent').innerText;
-    navigator.clipboard.writeText(code).then(() => {
-        const msg = document.getElementById('copiedMsg');
-        msg.style.display = 'inline';
+// Copy functionality
+const copyBtn = document.getElementById("copyBtn");
+const copiedMsg = document.getElementById("copiedMsg");
+
+copyBtn.addEventListener("click", async () => {
+    const keyText = document.getElementById("keyBox").innerText;
+    try {
+        await navigator.clipboard.writeText(keyText);
+        copiedMsg.style.display = "block";
+        copiedMsg.style.opacity = "1";
         setTimeout(() => {
-            msg.style.opacity = 1;
-            setTimeout(() => {
-                msg.style.opacity = 0;
-                setTimeout(() => msg.style.display = 'none', 500);
-            }, 1200);
-        }, 50);
-    }).catch(err => alert("Failed to copy: " + err));
+            copiedMsg.style.opacity = "0";
+            setTimeout(() => copiedMsg.style.display = "none", 300);
+        }, 1500);
+    } catch (err) {
+        alert("Failed to copy the key.");
+    }
 });
 
 // Initialize
-loadCode();
+loadKey();
