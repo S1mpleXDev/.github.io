@@ -3,20 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Code Copier</title>
+    <title>SimpleXKeySystem</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="container">
-        <i class="fab fa-discord discord-icon" onclick="openDiscord()"></i>
-        <h1>Copy Your Code</h1>
-        <div class="code-box" id="codeBox">
-            <pre id="codeContent">// Loading code...</pre>
-            <button class="copy-btn" id="copyBtn">Copy</button>
-            <span class="copied-msg" id="copiedMsg">Copied!</span>
-        </div>
+    <div class="header">
+        <h2>SimpleXKeySystem</h2>
+        <i class="fab fa-discord discord" onclick="openDiscord()"></i>
     </div>
+
+    <div class="card">
+        <div class="icon"><i class="fas fa-key"></i></div>
+        <h1>Your Key</h1>
+        <p>Click the button to copy the key.</p>
+
+        <div class="key-box" id="keyBox">Loading key...</div>
+
+        <button id="copyBtn"><i class="far fa-copy"></i> Copy Key</button>
+        <span id="copiedMsg">Copied!</span>
+    </div>
+
+    <footer>All rights reserved.</footer>
+
     <script src="script.js"></script>
 </body>
 </html>
