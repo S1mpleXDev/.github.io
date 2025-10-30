@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+:root {
+  --bg: #0a0a0f;
+  --accent: #3aa7ff;
+  --text: #f0f0f0;
+  --muted: #9ca3af;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+  height: 100vh;
+}
+
+/* Ambient spooky glow */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 30% 70%, rgba(0, 153, 255, 0.08), transparent 70%),
+              radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05), transparent 60%);
+  animation: glow 20s ease-in-out infinite alternate;
+  z-index: -1;
+}
+@keyframes glow {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 40px;
+}
+header h1 {
+  font-size: 1.5rem;
+}
+.discord-link img {
+  width: 42px;
+  height: 42px;
+  transition: transform 0.3s ease;
+}
+.discord-link img:hover {
+  transform: scale(1.15) rotate(5deg);
+}
+
+/* Card */
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 140px);
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 40px;
+  width: 380px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  text-align: center;
+  animation: float 6s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+.key-icon {
+  width: 40px;
+  height: 40px;
+}
+.card-header h2 {
+  font-size: 1.3rem;
+}
+.card-header p {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* Key box */
+.key-box {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+  font-family: monospace;
+  color: #fff;
+  letter-spacing: 0.5px;
+  word-break: break-all;
+}
+
+/* Copy button */
+.copy-btn {
+  background: var(--accent);
+  border: none;
+  padding: 12px 30px;
+  border-radius: 50px;
+  color: #000;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.copy-btn:hover {
+  background: #1e90ff;
+  transform: scale(1.05);
+}
+
+/* Copied message */
+.copied-msg {
+  opacity: 0;
+  color: #00ff99;
+  font-size: 0.9rem;
+  margin-top: 10px;
+  transition: opacity 0.4s ease;
+}
+.copied-msg.show {
+  opacity: 1;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  color: var(--muted);
+  padding-bottom: 15px;
+  font-size: 0.85rem;
+}
